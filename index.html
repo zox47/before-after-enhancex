@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Comparison Slider</title>
+  <link rel="stylesheet" href="styles.css">
+  <script
+  defer
+  src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
+></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
+/>
+</head>
+<body>
+  <input type="file" id="uploadFirst" accept="image/*">
+  <input type="file" id="uploadSecond" accept="image/*">
+  <img-comparison-slider>
+    <img slot="first" id="first-img" width="100%" src="images/green-leaves.0ebdd195.webp">
+    <img slot="second" id="second-img" width="100%" src="images/green-leaves-blurred.6ba79d3a.webp">
+  </img-comparison-slider>
+
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
