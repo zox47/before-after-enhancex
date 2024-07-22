@@ -27,14 +27,16 @@ body {
 
 .uploadWrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 20px; /* Space between buttons */
   width: 100%;
   margin-bottom: 20px;
 }
 
 .imageWrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Center the images horizontally */
+  gap: 20px; /* Space between images */
   width: 100%;
   margin-bottom: 20px;
 }
