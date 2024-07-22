@@ -1,37 +1,23 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
 .contentWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  max-width: 100%;
-  margin: auto;
 }
 
 .uploadWrapper {
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .imageWrapper {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
   margin-bottom: 20px;
 }
 
 .previewImage {
-  max-width: 100%;
-  height: auto;
+  max-width: 200px;
+  align-content: center;
   max-height: 200px;
   object-fit: contain;
   border: 2px solid #ccc;
@@ -39,24 +25,25 @@ body {
 }
 
 .btn {
-  padding: 0.8rem 1.6rem;
+  padding: 1rem 2rem;
   font-weight: 700;
-  background: #fff;
+  align-content: center;
+  background: rgb(255, 255, 255);
   color: blueviolet;
   cursor: pointer;
   border-radius: 0.5rem;
-  border: 2px solid blueviolet;
-  transition: all 0.3s ease;
+  border-bottom: 2px solid blueviolet;
+  border-right: 2px solid blueviolet;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  transition-duration: 1s;
+  transition-property: border-top, border-left, border-bottom, border-right, box-shadow;
 }
 
 .btn:hover {
-  border-color: rgb(238, 103, 238);
+  border-top: 2px solid blueviolet;
+  border-left: 2px solid blueviolet;
+  border-bottom: 2px solid rgb(238, 103, 238);
+  border-right: 2px solid rgb(238, 103, 238);
   box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px;
-}
-
-.comparisonContainer {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  display: none;
 }
