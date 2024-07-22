@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Upload and Display</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
 </head>
 <body>
   <div class="contentWrapper">
@@ -18,22 +19,43 @@
       <img id="leftImagePreview" class="previewImage" alt="Left" style="display: none;" />
       <img id="rightImagePreview" class="previewImage" alt="Right" style="display: none;" />
     </div>
+    <div id="comparisonContainer" class="juxtapose"></div>
   </div>
 
+  <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
   <script>
+    let leftImage, rightImage;
+
     document.getElementById('leftImageInput').addEventListener('change', function(event) {
-      const leftImage = URL.createObjectURL(event.target.files[0]);
+      leftImage = URL.createObjectURL(event.target.files[0]);
       const leftImagePreview = document.getElementById('leftImagePreview');
       leftImagePreview.src = leftImage;
       leftImagePreview.style.display = 'block';
+      showComparison();
     });
 
     document.getElementById('rightImageInput').addEventListener('change', function(event) {
-      const rightImage = URL.createObjectURL(event.target.files[0]);
+      rightImage = URL.createObjectURL(event.target.files[0]);
       const rightImagePreview = document.getElementById('rightImagePreview');
       rightImagePreview.src = rightImage;
       rightImagePreview.style.display = 'block';
+      showComparison();
     });
+
+    function showComparison() {
+      if (leftImage && rightImage) {
+        document.getElementById('comparisonContainer').innerHTML = `
+          <div class="juxtapose">
+            <img src="${leftImage}" alt="Left Image" />
+            <img src="${rightImage}" alt="Right Image" />
+          </div>
+        `;
+        new juxtapose.JXSlider('#comparisonContainer .juxtapose', [
+          { src: leftImage },
+          { src: rightImage }
+        ]);
+      }
+    }
   </script>
 </body>
 </html>
