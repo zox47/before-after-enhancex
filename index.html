@@ -17,42 +17,43 @@
       <button class="btn" onclick="document.getElementById('rightImageInput').click()">Upload Right Image</button>
     </div>
     <div class="imageWrapper">
-      <img id="leftImagePreview" class="previewImage" alt="Left" style="display: none;" />
-      <img id="rightImagePreview" class="previewImage" alt="Right" style="display: none;" />
+      <img id="leftImagePreview" class="previewImage" alt="Left" />
+      <img id="rightImagePreview" class="previewImage" alt="Right" />
     </div>
-    <div id="comparisonContainer" style="width: 80%; height: 400px; display: none;">
+    <div id="comparisonContainer" class="comparisonContainer">
       <img-comparison-slider>
-        <img slot="first" id="leftComparisonImage" width="100%" />
-        <img slot="second" id="rightComparisonImage" width="100%" />
+        <img slot="first" id="leftComparisonImage" />
+        <img slot="second" id="rightComparisonImage" />
       </img-comparison-slider>
     </div>
   </div>
 
   <script>
-    let leftImage, rightImage;
-
     document.getElementById('leftImageInput').addEventListener('change', function(event) {
-      leftImage = URL.createObjectURL(event.target.files[0]);
-      const leftImagePreview = document.getElementById('leftImagePreview');
-      leftImagePreview.src = leftImage;
-      leftImagePreview.style.display = 'block';
-      showComparison();
+      handleImageUpload(event, 'left');
     });
 
     document.getElementById('rightImageInput').addEventListener('change', function(event) {
-      rightImage = URL.createObjectURL(event.target.files[0]);
-      const rightImagePreview = document.getElementById('rightImagePreview');
-      rightImagePreview.src = rightImage;
-      rightImagePreview.style.display = 'block';
-      showComparison();
+      handleImageUpload(event, 'right');
     });
 
-    function showComparison() {
+    function handleImageUpload(event, side) {
+      const file = event.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        document.getElementById(`${side}ImagePreview`).src = imageUrl;
+        document.getElementById(`${side}ImagePreview`).style.display = 'block';
+        updateComparison();
+      }
+    }
+
+    function updateComparison() {
+      const leftImage = document.getElementById('leftImagePreview').src;
+      const rightImage = document.getElementById('rightImagePreview').src;
+
       if (leftImage && rightImage) {
-        const leftComparisonImage = document.getElementById('leftComparisonImage');
-        const rightComparisonImage = document.getElementById('rightComparisonImage');
-        leftComparisonImage.src = leftImage;
-        rightComparisonImage.src = rightImage;
+        document.getElementById('leftComparisonImage').src = leftImage;
+        document.getElementById('rightComparisonImage').src = rightImage;
         document.getElementById('comparisonContainer').style.display = 'block';
       }
     }
