@@ -20,10 +20,10 @@
       <img id="leftImagePreview" class="previewImage" alt="Left" style="display: none;" />
       <img id="rightImagePreview" class="previewImage" alt="Right" style="display: none;" />
     </div>
-    <div id="comparisonContainer" style="display: none;">
+    <div id="comparisonContainer" class="comparisonContainer">
       <img-comparison-slider>
-        <img slot="first" id="leftComparisonImage" width="100%" />
-        <img slot="second" id="rightComparisonImage" width="100%" />
+        <img slot="first" id="leftComparisonImage" />
+        <img slot="second" id="rightComparisonImage" />
       </img-comparison-slider>
     </div>
   </div>
@@ -53,7 +53,7 @@
         const rightComparisonImage = document.getElementById('rightComparisonImage');
         leftComparisonImage.src = leftImage;
         rightComparisonImage.src = rightImage;
-        document.getElementById('comparisonContainer').style.display = 'block';
+        document.getElementById('comparisonContainer').style.display = 'flex';
       }
     }
   </script>
