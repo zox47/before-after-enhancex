@@ -25,6 +25,9 @@
         <img slot="first" id="leftComparisonImage" />
         <img slot="second" id="rightComparisonImage" />
       </img-comparison-slider>
+      <div id="zoomOverlay" class="zoomOverlay">
+        <img id="zoomImage" />
+      </div>
     </div>
   </div>
 
@@ -54,8 +57,41 @@
         leftComparisonImage.src = leftImage;
         rightComparisonImage.src = rightImage;
         document.getElementById('comparisonContainer').style.display = 'flex';
+
+        const zoomOverlay = document.getElementById('zoomOverlay');
+        const zoomImage = document.getElementById('zoomImage');
+        zoomImage.src = leftImage; // Set zoom image source
+        zoomOverlay.style.display = 'none'; // Hide zoom overlay initially
       }
     }
+
+    const comparisonContainer = document.getElementById('comparisonContainer');
+    const zoomOverlay = document.getElementById('zoomOverlay');
+    const zoomImage = document.getElementById('zoomImage');
+
+    comparisonContainer.addEventListener('mousemove', (e) => {
+      const { left, top, width, height } = comparisonContainer.getBoundingClientRect();
+      const x = e.clientX - left;
+      const y = e.clientY - top;
+
+      zoomImage.style.transform = `translate(-${x * 2}px, -${y * 2}px)`;
+      zoomOverlay.style.backgroundImage = `url(${zoomImage.src})`;
+      zoomOverlay.style.backgroundSize = `${width * 2}px ${height * 2}px`;
+      zoomOverlay.style.backgroundPosition = `-${x * 2}px -${y * 2}px`;
+      zoomOverlay.style.display = 'block';
+    });
+
+    comparisonContainer.addEventListener('mouseleave', () => {
+      zoomOverlay.style.display = 'none';
+    });
+
+    document.getElementById('leftImagePreview').addEventListener('click', () => {
+      zoomImage.src = leftImage;
+    });
+
+    document.getElementById('rightImagePreview').addEventListener('click', () => {
+      zoomImage.src = rightImage;
+    });
   </script>
 </body>
 </html>
