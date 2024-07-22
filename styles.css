@@ -9,9 +9,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f0f0f0;
-  overflow: hidden; /* Prevent scrolling when comparison is full-screen */
 }
 
 .contentWrapper {
@@ -51,21 +50,16 @@ body {
 
 .comparisonContainer {
   display: none; /* Initially hidden */
-  position: fixed; /* Fix to viewport */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: white; /* Background color of comparison container */
-  display: flex;
-  align-items: center; /* Center images vertically */
-  justify-content: center; /* Center images horizontally */
-  overflow: hidden; /* Prevent scrolling */
+  position: relative; /* Normal document flow */
+  width: 100%;
+  height: auto; /* Adjust based on content */
+  margin: 20px 0;
+  overflow: hidden; /* Hide overflow */
 }
 
 img-comparison-slider {
   width: 100%;
-  height: 100%;
+  height: auto; /* Adjust based on content */
 }
 
 img-comparison-slider img {
