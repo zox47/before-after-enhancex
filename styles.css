@@ -26,6 +26,7 @@
 .btn {
   padding: 1rem 2rem;
   font-weight: 700;
+  align-content: center;
   background: rgb(255, 255, 255);
   color: blueviolet;
   cursor: pointer;
