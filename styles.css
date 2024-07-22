@@ -17,6 +17,7 @@
 
 .previewImage {
   max-width: 200px;
+  align-content: center;
   max-height: 200px;
   object-fit: contain;
   border: 2px solid #ccc;
