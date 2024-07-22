@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Upload and Display</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css" />
 </head>
 <body>
   <div class="contentWrapper">
@@ -19,10 +20,14 @@
       <img id="leftImagePreview" class="previewImage" alt="Left" style="display: none;" />
       <img id="rightImagePreview" class="previewImage" alt="Right" style="display: none;" />
     </div>
-    <div id="comparisonContainer" class="juxtapose"></div>
+    <div id="comparisonContainer" style="width: 80%; height: 400px; display: none;">
+      <img-comparison-slider>
+        <img slot="first" id="leftComparisonImage" />
+        <img slot="second" id="rightComparisonImage" />
+      </img-comparison-slider>
+    </div>
   </div>
 
-  <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
   <script>
     let leftImage, rightImage;
 
@@ -44,16 +49,11 @@
 
     function showComparison() {
       if (leftImage && rightImage) {
-        document.getElementById('comparisonContainer').innerHTML = `
-          <div class="juxtapose">
-            <img src="${leftImage}" alt="Left Image" />
-            <img src="${rightImage}" alt="Right Image" />
-          </div>
-        `;
-        new juxtapose.JXSlider('#comparisonContainer .juxtapose', [
-          { src: leftImage },
-          { src: rightImage }
-        ]);
+        const leftComparisonImage = document.getElementById('leftComparisonImage');
+        const rightComparisonImage = document.getElementById('rightComparisonImage');
+        leftComparisonImage.src = leftImage;
+        rightComparisonImage.src = rightImage;
+        document.getElementById('comparisonContainer').style.display = 'block';
       }
     }
   </script>
